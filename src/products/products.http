@@ -1,0 +1,22 @@
+### List products
+
+GET http://localhost:3000/products
+
+### Get products
+
+GET http://localhost:3000/products/44
+
+### Create products
+
+POST http://localhost:3000/products/
+
+
+### Update products
+
+PATCH http://localhost:3000/products/44
+
+
+
+### Delete products
+
+DELETE http://localhost:3000/products/44
