@@ -14,7 +14,7 @@ export class CreateProductDto {
   focalLength: string;
 
   @IsString()
-  MaxAperture: string;
+  maxAperture: string;
 
   @IsString()
   mount: string;

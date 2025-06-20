@@ -4,19 +4,36 @@ GET http://localhost:3000/products
 
 ### Get products
 
-GET http://localhost:3000/products/44
+GET http://localhost:3000/products/product_3Skg3Tkzshwx25RVkHkLx
 
 ### Create products
 
 POST http://localhost:3000/products/
+Content-Type: application/json
 
+{
+  "model": "Nikon NIKKOR Z 24-70mm f/2.8 S",
+  "brand": "Nikon",
+  "type": "Zoom",
+  "focalLength": "24-70mm",
+  "maxAperture": "f/2.8",
+  "mount": "Nikon Z Mount",
+  "weight": 805,
+  "haStabilization": true,
+  "active": true
+}
 
 ### Update products
 
-PATCH http://localhost:3000/products/44
+PATCH http://localhost:3000/products/product_awzpvK_NZGDyxfuU47wQ0
+Content-Type: application/json
+
+{
+  "model": "OLXx"
+}
 
 
 
 ### Delete products
 
-DELETE http://localhost:3000/products/44
+DELETE http://localhost:3000/products/product_3Skg3Tkzshwx25RVkHkLx
