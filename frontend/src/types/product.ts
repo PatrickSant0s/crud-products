@@ -2,5 +2,11 @@ export interface Product {
   id: string;
   model: string;
   brand: string;
-  type: string;
+  type: 'Prime' | 'Zoom' | 'Macro' | 'Tilt-Shift';
+  focalLength: string;
+  maxAperture: string;
+  mount: string;
+  weight: number;
+  hasStabilization: boolean;
+  active: boolean;
 }
