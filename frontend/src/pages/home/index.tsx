@@ -2,27 +2,23 @@ import { ProductForm } from "../../components/productForm";
 import { ProductList } from "../../components/productList";
 import { Product } from "../../types/product";
 import { Container } from "./style";
-
-const mockProducts: Product[] = [
-  {
-    id: "1",
-    model: "EF 50mm",
-    brand: "Canon",
-    type: "Prime",
-    focalLength: "50mm",
-    maxAperture: "f/1.8",
-    mount: "EF",
-    weight: 160,
-    hasStabilization: false,
-    active: true,
-  },
-];
+import { fetchProducts } from "../../services/api";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export default function Home() {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    fetchProducts()
+      .then((data) => setProducts(data))
+      .catch((err) => console.error("Erro ao buscar produtos:", err));
+  }, []);
+
   return (
     <Container>
       <ProductForm />
-      <ProductList products={mockProducts} />
+      <ProductList products={products} />
     </Container>
   );
 }
