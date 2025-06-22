@@ -19,7 +19,7 @@ Content-Type: application/json
   "maxAperture": "f/2.8",
   "mount": "Nikon Z Mount",
   "weight": 805,
-  "haStabilization": true,
+  "hasStabilization": true,
   "active": true
 }
 

@@ -23,7 +23,7 @@ export class CreateProductDto {
   weight: number;
 
   @IsBoolean()
-  haStabilization: boolean;
+  hasStabilization: boolean;
 
   @IsBoolean()
   active: boolean;

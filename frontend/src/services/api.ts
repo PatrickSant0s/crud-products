@@ -11,3 +11,10 @@ export async function fetchProducts(): Promise<Product[]> {
 export async function deleteProduct(id: string): Promise<void> {
   await axios.delete(`${baseUrl}/${id}`);
 }
+
+export async function createProduct(
+  product: Omit<Product, "id">
+): Promise<Product> {
+  const response = await axios.post<Product>(baseUrl, product);
+  return response.data;
+}
