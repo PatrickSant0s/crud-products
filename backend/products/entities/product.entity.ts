@@ -29,7 +29,7 @@ export class Product {
   weight: number;
 
   @Column()
-  haStabilization: boolean;
+  hasStabilization: boolean;
 
   @Column()
   active: boolean;

@@ -46,8 +46,7 @@ export class ProductsController {
 
   @Delete(':id')
   @HttpCode(204)
-  async remove(@Param('id') id: string) {
-    const product = await this.productsService.remove(id);
-    if (!product) throw new NotFoundException();
+  async remove(@Param('id') id: string): Promise<void> {
+    await this.productsService.remove(id);
   }
 }
