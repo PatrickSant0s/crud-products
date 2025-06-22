@@ -84,7 +84,6 @@ export function ProductForm({ onCreated }: ProductFormProps) {
 
   return (
     <div>
-      <h1>Product Form</h1>
       <FormCard>
         <Form onSubmit={handleSubmit}>
           <Input
