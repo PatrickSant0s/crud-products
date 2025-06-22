@@ -33,7 +33,8 @@ npm run dev
 
 ## 📷 Interface
 
-![Tela do sistema](./screenshot.png)
+![image](https://github.com/user-attachments/assets/6501b671-ace5-4cf8-a8ea-10c7125acdbd)
+
 
 ---
 
