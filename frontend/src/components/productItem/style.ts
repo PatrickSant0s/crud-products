@@ -6,3 +6,15 @@ export const Item = styled.li`
   padding: 1rem;
   margin-bottom: 1rem;
 `;
+export const DeleteButton = styled.button`
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #e63946;
+  margin-left: auto;
+  display: flex;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;

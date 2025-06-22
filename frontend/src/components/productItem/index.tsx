@@ -1,11 +1,14 @@
+import { Trash } from "lucide-react";
 import { Product } from "../../types/product";
-import { Item } from "./style";
+
+import { DeleteButton, Item } from "./style";
 
 interface Props {
   product: Product;
+  onDelete: (id: string) => void;
 }
 
-export function ProductItem({ product }: Props) {
+export function ProductItem({ product, onDelete }: Props) {
   return (
     <Item>
       <div>
@@ -18,6 +21,12 @@ export function ProductItem({ product }: Props) {
         Stabilized: {product.hasStabilization ? "Yes" : "No"}, Active:{" "}
         {product.active ? "Yes" : "No"}
       </div>
+      <DeleteButton
+        onClick={() => onDelete(product.id)}
+        title="Excluir produto"
+      >
+        <Trash size={18} />
+      </DeleteButton>
     </Item>
   );
 }

@@ -7,3 +7,7 @@ export async function fetchProducts(): Promise<Product[]> {
   const response = await axios.get<Product[]>(baseUrl);
   return response.data;
 }
+
+export async function deleteProduct(id: string): Promise<void> {
+  await axios.delete(`${baseUrl}/${id}`);
+}
