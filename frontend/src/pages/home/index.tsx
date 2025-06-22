@@ -5,6 +5,7 @@ import { Container } from "./style";
 import { deleteProduct, fetchProducts } from "../../services/api";
 import { useEffect } from "react";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -26,9 +27,11 @@ export default function Home() {
   const handleDelete = async (id: string) => {
     try {
       await deleteProduct(id);
-      await loadProducts(); // recarrega do backend a lista atualizada
+      await loadProducts();
+      toast.success("Produto removido com sucesso!");
     } catch (err) {
       console.error("Erro ao excluir produto:", err);
+      toast.error("Erro ao criar produto. Tente novamente.");
     }
   };
 

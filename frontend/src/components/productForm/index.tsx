@@ -3,6 +3,7 @@ import { Form, Input, Select, Button, Row, Label, FormCard } from "./styles";
 import { validateProductForm, FormData } from "../../services/validation";
 import { createProduct } from "../../services/api";
 import { Product } from "../../types/product";
+import { toast, ToastContainer } from "react-toastify";
 
 type ProductFormProps = {
   onCreated?: (product: Product) => void;
@@ -45,7 +46,6 @@ export function ProductForm({ onCreated }: ProductFormProps) {
 
     if (Object.keys(validationErrors).length === 0) {
       setLoading(true);
-      setMessage("");
 
       try {
         const allowedTypes = ["Prime", "Zoom", "Macro", "Tilt-Shift"] as const;
@@ -56,10 +56,9 @@ export function ProductForm({ onCreated }: ProductFormProps) {
           type: form.type as ProductType,
           weight: Number(form.weight),
         };
-        console.log("Enviando produto:", productToSend);
-        const createdProduct = await createProduct(productToSend);
 
-        setMessage(`Produto criado com sucesso! ID: ${createdProduct.id}`);
+        const createdProduct = await createProduct(productToSend);
+        toast.success(`Produto criado com sucesso!`);
 
         setForm({
           model: "",
@@ -73,10 +72,9 @@ export function ProductForm({ onCreated }: ProductFormProps) {
           active: false,
         });
 
-        // Chama o callback para avisar a home que tem produto novo
         onCreated?.(createdProduct);
       } catch (error) {
-        setMessage("Erro ao criar produto. Tente novamente.");
+        toast.error("Erro ao criar produto. Tente novamente.");
         console.error(error);
       } finally {
         setLoading(false);
@@ -179,6 +177,7 @@ export function ProductForm({ onCreated }: ProductFormProps) {
         </Form>
         {message && <p>{message}</p>}
       </FormCard>
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 }
