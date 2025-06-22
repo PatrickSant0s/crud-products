@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { Form, Input, Select, Button, Row, Label, FormCard } from "./styles";
 import { validateProductForm, FormData } from "../../services/validation";
 import { createProduct } from "../../services/api";
+import { Product } from "../../types/product";
 
-export function ProductForm() {
+type ProductFormProps = {
+  onCreated?: (product: Product) => void;
+};
+
+export function ProductForm({ onCreated }: ProductFormProps) {
   const [form, setForm] = useState<FormData>({
     model: "",
     brand: "",
@@ -53,6 +58,7 @@ export function ProductForm() {
         };
         console.log("Enviando produto:", productToSend);
         const createdProduct = await createProduct(productToSend);
+
         setMessage(`Produto criado com sucesso! ID: ${createdProduct.id}`);
 
         setForm({
@@ -66,6 +72,9 @@ export function ProductForm() {
           hasStabilization: false,
           active: false,
         });
+
+        // Chama o callback para avisar a home que tem produto novo
+        onCreated?.(createdProduct);
       } catch (error) {
         setMessage("Erro ao criar produto. Tente novamente.");
         console.error(error);
@@ -135,9 +144,10 @@ export function ProductForm() {
 
           <Input
             name="weight"
-            placeholder="Peso"
+            placeholder="Peso em gramas"
             value={form.weight}
             onChange={handleChange}
+            type="number"
           />
           {errors.weight && <p style={{ color: "red" }}>{errors.weight}</p>}
 

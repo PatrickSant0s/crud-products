@@ -34,7 +34,10 @@ export default function Home() {
 
   return (
     <Container>
-      <ProductForm />
+      <ProductForm
+        onCreated={(newProduct) => setProducts((old) => [...old, newProduct])}
+      />
+
       <ProductList products={products} onDelete={handleDelete} />
     </Container>
   );
