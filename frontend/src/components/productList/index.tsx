@@ -1,9 +1,18 @@
-import { ProductItem } from '../productItem';
+import { Product } from "../../types/product";
+import { ProductItem } from "../productItem";
 
-export function ProductList() {
+import { List } from "./style";
+
+interface Props {
+  products: Product[];
+}
+
+export function ProductList({ products }: Props) {
   return (
-    <div className="product-list">
-      <ProductItem />
-    </div>
+    <List>
+      {products.map((prod) => (
+        <ProductItem key={prod.id} product={prod} />
+      ))}
+    </List>
   );
 }
