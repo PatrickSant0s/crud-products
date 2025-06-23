@@ -132,5 +132,5 @@ Deploy disponível em:
 
 Feito com 💻 por Patrick Santos
 
-* Este projeto não possui testes automatizados nem CI/CD configurado.
+
 * A documentação da API pode ser visualizada acessando `/api` no backend rodando localmente.
