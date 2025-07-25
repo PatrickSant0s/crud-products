@@ -38,7 +38,9 @@ export const Pagination = styled.div`
   margin-top: 2rem;
 `;
 
-export const PageButton = styled.button<{ active: boolean }>`
+export const PageButton = styled.button.withConfig({
+  shouldForwardProp: (prop) => prop !== "active",
+})<{ active: boolean }>`
   padding: 0.5rem 1rem;
   border-radius: 8px;
   border: 1px solid #ccc;

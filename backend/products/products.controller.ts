@@ -14,7 +14,7 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
-@ApiTags('products') // Agrupa no Swagger
+@ApiTags('products')
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
@@ -33,34 +33,37 @@ export class ProductsController {
     return this.productsService.findAll();
   }
 
-  @Get(':id')
-  @ApiOperation({ summary: 'Buscar um produto por ID' })
+  @Get(':productId')
+  @ApiOperation({ summary: 'Buscar um produto por productId' })
   @ApiResponse({ status: 200, description: 'Produto encontrado' })
   @ApiResponse({ status: 404, description: 'Produto não encontrado' })
-  async findOne(@Param('id') id: string) {
-    const product = await this.productsService.findOne(id);
+  async findOne(@Param('productId') productId: string) {
+    const product = await this.productsService.findOne(productId);
     if (!product) throw new NotFoundException();
     return product;
   }
 
-  @Patch(':id')
-  @ApiOperation({ summary: 'Atualizar um produto por ID' })
+  @Patch(':productId')
+  @ApiOperation({ summary: 'Atualizar um produto por productId' })
   @ApiResponse({ status: 200, description: 'Produto atualizado com sucesso' })
   @ApiResponse({ status: 404, description: 'Produto não encontrado' })
   async update(
-    @Param('id') id: string,
+    @Param('productId') productId: string,
     @Body() updateProductDto: UpdateProductDto
   ) {
-    const product = await this.productsService.update(id, updateProductDto);
+    const product = await this.productsService.update(
+      productId,
+      updateProductDto
+    );
     if (!product) throw new NotFoundException();
     return product;
   }
 
-  @Delete(':id')
+  @Delete(':productId')
   @HttpCode(204)
-  @ApiOperation({ summary: 'Remover um produto por ID' })
+  @ApiOperation({ summary: 'Remover um produto por productId' })
   @ApiResponse({ status: 204, description: 'Produto removido com sucesso' })
-  async remove(@Param('id') id: string): Promise<void> {
-    await this.productsService.remove(id);
+  async remove(@Param('productId') productId: string): Promise<void> {
+    await this.productsService.remove(productId);
   }
 }

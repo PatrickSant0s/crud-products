@@ -1,6 +1,7 @@
 import { Trash2, Pencil } from "lucide-react";
 import { Product } from "../../types/product";
 import { Item, DeleteButton, EditButton } from "./style";
+import { deleteProduct } from "../../services/api";
 
 type Props = {
   product: Product;
@@ -27,10 +28,14 @@ export function ProductItem({ product, onDelete, onEdit }: Props) {
         <EditButton onClick={() => onEdit(product)} title="Editar produto">
           <Pencil size={18} />
         </EditButton>
-
         <DeleteButton
-          onClick={() => onDelete(product.id)}
-          title="Excluir produto"
+          onClick={() => {
+            if (product._id) {
+              onDelete(product._id);
+            } else {
+              console.error("ID do produto está undefined", product);
+            }
+          }}
         >
           <Trash2 size={18} />
         </DeleteButton>

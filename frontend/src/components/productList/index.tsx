@@ -16,7 +16,7 @@ export function ProductList({ products, onDelete, onEdit }: Props) {
     <List>
       {products.map((prod) => (
         <ProductItem
-          key={prod.id}
+          key={prod._id}
           product={prod}
           onDelete={onDelete}
           onEdit={(product) => {

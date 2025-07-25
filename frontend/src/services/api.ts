@@ -14,7 +14,7 @@ export async function deleteProduct(id: string): Promise<void> {
 }
 
 export async function createProduct(
-  product: Omit<Product, "id">
+  product: Omit<Product, "_id">
 ): Promise<Product> {
   const response = await axios.post<Product>(baseUrl, product);
   return response.data;
@@ -22,7 +22,7 @@ export async function createProduct(
 
 export async function updateProduct(
   id: string,
-  product: Omit<Product, "id">
+  product: Omit<Product, "_id">
 ): Promise<Product> {
   const response = await axios.patch<Product>(`${baseUrl}/${id}`, product);
   return response.data;

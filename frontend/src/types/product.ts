@@ -1,8 +1,8 @@
 export interface Product {
-  id: string;
+  _id: string;
   model: string;
   brand: string;
-  type: 'Prime' | 'Zoom' | 'Macro' | 'Tilt-Shift';
+  type: "Prime" | "Zoom" | "Macro" | "Tilt-Shift";
   focalLength: string;
   maxAperture: string;
   mount: string;
