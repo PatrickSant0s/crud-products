@@ -12,6 +12,7 @@ Aplicação fullstack para gerenciamento de produtos, com funcionalidades de cad
 cd backend
 npm install
 npm run start:dev
+npm run test:e2e
 ```
 
 * Acesse: `http://localhost:3000`
@@ -49,6 +50,8 @@ npm run dev
 * Exclusão de produtos
 * Documentação da API com Swagger
 * Estrutura modular com uso de DTOs
+* Criação, leitura, atualização e exclusão de produtos (CRUD completo)
+* Testes E2E com Supertest + Jest cobrindo rotas `/products`
 
 ### Frontend
 
@@ -59,6 +62,24 @@ npm run dev
 * Consumo da API com Axios
 * Estilização com Styled Components
 * Deploy funcional na Vercel
+
+
+
+
+## 🔄 Testes End‑to‑End (E2E)
+
+Agora a API conta com **testes automatizados E2E** para as rotas de produtos:
+
+- `POST /products` — Criação de produto
+- `GET /products` — Listagem de produtos
+- `GET /products/:id` — Busca por ID
+- `PATCH /products/:id` — Atualização parcial
+- `DELETE /products/:id` — Exclusão de produto (retorna status 204)
+
+Os testes são escritos em Jest com `supertest`, garantindo que o backend inteiro (controller → service → banco) funcione como esperado.
+
+
+
 
 ## 📁 Estrutura de Pastas
 
@@ -124,7 +145,7 @@ Deploy disponível em:
 
 ## 📝 Observações
 
-* O backend utiliza SQLite apenas para fins de demonstração. Em ambiente real, recomenda-se usar PostgreSQL ou outro banco persistente.
+* O backend utiliza MongoDb 
 * O deploy atual está apenas para o frontend. O backend pode ser facilmente publicado via [Render](https://render.com) ou [Railway](https://railway.app).
 * Dados não são persistidos entre deploys em ambientes serverless com SQLite.
 
