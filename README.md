@@ -1,6 +1,10 @@
 # 🛠️ Gerenciador de Produtos
 
-Aplicação fullstack para gerenciamento de produtos, com funcionalidades de cadastro, listagem, edição, exclusão e filtro por nome/modelo. Construída com **NestJS + SQLite + TypeORM no backend** e **React + TypeScript + Styled Components no frontend**.
+Aplicação fullstack para gerenciamento de produtos, com funcionalidades de cadastro, listagem, edição, exclusão, paginação e filtro por nome/modelo.
+
+Construída com NestJS, MongoDB (via Docker) e Mongoose no backend, e React + TypeScript + Styled Components no frontend.
+
+A aplicação também conta com testes End-to-End (E2E) utilizando Jest e Supertest para garantir a estabilidade das rotas de API.
 
 ---
 
