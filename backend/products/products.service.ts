@@ -1,45 +1,50 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Product } from './schemas/product.schema';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { Repository } from 'typeorm';
-import { Product } from './entities/product.entity';
-import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ProductsService {
   constructor(
-    @InjectRepository(Product)
-    private readonly repository: Repository<Product>
-  ) { }
+    @InjectModel(Product.name)
+    private readonly model: Model<Product>
+  ) {}
 
-  create(dto: CreateProductDto) {
-    const product = this.repository.create(dto);
-    return this.repository.save(product);
+  async create(dto: CreateProductDto) {
+    const product = new this.model(dto);
+    return await product.save();
   }
 
-  findAll() {
-    return this.repository.find();
+  async findAll() {
+    return await this.model.find().exec();
   }
 
-  findOne(id: string) {
-    return this.repository.findOneBy({ id });
+  async findOne(id: string) {
+    const product = await this.model.findById(id).exec();
+    if (!product) {
+      throw new NotFoundException(`Produto com ID ${id} não encontrado`);
+    }
+    return product;
   }
 
   async update(id: string, dto: UpdateProductDto) {
-    const product = await this.repository.findOneBy({ id });
+    const updated = await this.model
+      .findByIdAndUpdate(id, dto, { new: true })
+      .exec();
 
-    if (!product) {
-      return null;
+    if (!updated) {
+      throw new NotFoundException(`Produto com ID ${id} não encontrado`);
     }
 
-    this.repository.merge(product, dto);
-    return this.repository.save(product);
+    return updated;
   }
 
   async remove(id: string): Promise<void> {
-    const result = await this.repository.delete(id);
-  
-    if (result.affected === 0) {
+    console.log('Tentando deletar ID:', id);
+    const result = await this.model.deleteOne({ _id: id }).exec();
+    if (result.deletedCount === 0) {
       throw new NotFoundException(`Produto com ID ${id} não encontrado`);
     }
   }

@@ -10,7 +10,6 @@ import {
   Label,
   Select,
   CheckboxContainer,
-  
 } from "./style";
 
 type Props = {
@@ -49,8 +48,8 @@ export function EditProductModal({ product, onClose, onUpdated }: Props) {
 
   const handleSubmit = async () => {
     if (!form) return;
-    const { id, ...rest } = form;
-    await updateProduct(id, rest);
+    const { _id, ...rest } = form;
+    await updateProduct(_id, rest);
     onUpdated();
     onClose();
   };

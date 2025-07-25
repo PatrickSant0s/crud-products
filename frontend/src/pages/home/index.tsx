@@ -27,9 +27,9 @@ export default function Home() {
     loadProducts();
   }, []);
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (_id: string) => {
     try {
-      await deleteProduct(id);
+      await deleteProduct(_id);
       await loadProducts();
       toast.success("Produto removido com sucesso!");
     } catch (err) {
@@ -59,8 +59,8 @@ export default function Home() {
 
   const filteredProducts = products.filter(
     (product) =>
-      product.model.toLowerCase().includes(search.toLowerCase()) ||
-      product.brand.toLowerCase().includes(search.toLowerCase())
+      (product.model?.toLowerCase() ?? "").includes(search.toLowerCase()) ||
+      (product.brand?.toLowerCase() ?? "").includes(search.toLowerCase())
   );
 
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
